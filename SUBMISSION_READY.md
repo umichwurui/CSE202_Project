@@ -3,6 +3,12 @@
 **Date**: 2025-12-10
 **Status**: 📦 All unnecessary files removed, only submission files remain
 
+## ✏️ Final Updates
+
+- **Authors**: Rui Wu & Yiqian Liu
+- **Code Repository**: https://github.com/umichwurui/CSE202_Project
+- **Report**: 14 pages with 6 diverse visualizations
+
 ---
 
 ## 📋 Final File Structure

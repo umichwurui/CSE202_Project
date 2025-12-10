@@ -200,9 +200,9 @@ Then grid approximation with resolution r returns (1+ε)-approximate solution.
 - LaValle (2006): Planning Algorithms
 - Karaman & Frazzoli (2011): Sampling-based Optimal Motion Planning
 
-## Author
+## Authors
 
-CSE 202 Student
+Rui Wu & Yiqian Liu
 UC San Diego
 
 ## License
