@@ -82,6 +82,45 @@ We model this scenario as a single-shot optimization problem over a discrete cou
 \]
 where $C_{\mathbf{u}}(g, \text{type})$ is the minimum cost to reach region $g$ by deadline, starting with acceleration $\mathbf{u}$.
 
+\subsection{Model Parameters}
+
+Our implementation defines the following parameters to model badminton game dynamics:
+
+\textbf{Shot Types.} The model considers 6 standard badminton shot types, each with distinct trajectory and timing characteristics:
+\begin{itemize}
+    \item \textbf{NET}: Short shot close to the net (fastest arrival time)
+    \item \textbf{DROP}: Gentle shot landing in front court
+    \item \textbf{LIFT}: Defensive high shot to rear court
+    \item \textbf{CLEAR}: Deep shot to baseline (longest arrival time)
+    \item \textbf{DRIVE}: Fast horizontal shot to mid-court
+    \item \textbf{SMASH}: Aggressive downward shot (highest speed)
+\end{itemize}
+
+\textbf{Court Positions.} Opponent position affects shot distribution:
+\begin{itemize}
+    \item \textbf{FRONT}: Opponent at net (higher probability of NET, DROP)
+    \item \textbf{MID}: Opponent at mid-court (balanced distribution)
+    \item \textbf{REAR}: Opponent at baseline (higher probability of CLEAR, SMASH)
+\end{itemize}
+
+\textbf{Movement Directions.} Opponent movement provides additional cues:
+\begin{itemize}
+    \item \textbf{FORWARD/BACKWARD}: Indicates likely shot depth
+    \item \textbf{LEFT/RIGHT}: Indicates likely lateral placement
+    \item \textbf{NEUTRAL}: No directional bias
+\end{itemize}
+
+\textbf{Numerical Parameters.} Default values used in our experiments:
+\begin{itemize}
+    \item Grid size: $30 \times 30$ (1 unit $\approx$ 0.5m in real court)
+    \item Region size: $10 \times 10$ per region (9 total regions in $3 \times 3$ layout)
+    \item Time step: $\delta t = 0.1$ seconds
+    \item Anticipation window: $H = 5$ steps (0.5 seconds total)
+    \item Max acceleration: $a_{\max} = 5.0$ units/s² ($\approx 2.5$ m/s²)
+    \item Cost coefficients: $c_h = 1.0$ (horizontal), $c_v = 1.5$ (vertical)
+    \item Cost anisotropy reflects the fact that forward/backward movement is more costly than lateral movement in badminton
+\end{itemize}
+
 \subsection{Contributions}
 
 This paper makes the following contributions:
@@ -512,6 +551,10 @@ The framework established here provides a foundation for studying anticipatory m
 All source code, data generation scripts, and experimental results are available at:
 \url{https://github.com/umichwurui/CSE202_Project}
 
+\section*{Acknowledgments}
+
+We acknowledge the use of ChatGPT~\cite{chatgpt2024} as a programming assistant for code development, debugging, and implementation optimization. The theoretical analysis, algorithm design, experimental methodology, and interpretation of results were developed by the authors.
+
 \begin{thebibliography}{9}
 
 \bibitem{garey1979}
@@ -533,6 +576,12 @@ Cambridge University Press, 2006.
 S. Karaman and E. Frazzoli.
 Sampling-based algorithms for optimal motion planning.
 \textit{International Journal of Robotics Research}, 30(7):846--894, 2011.
+
+\bibitem{chatgpt2024}
+OpenAI.
+ChatGPT (GPT-5).
+\url{https://chat.openai.com}, 2025.
+Accessed: December 2025.
 
 \end{thebibliography}
 
